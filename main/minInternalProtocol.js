@@ -12,7 +12,7 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 function registerBundleProtocol (ses) {
-  ses.protocol.handle('min', (req) => {
+  ses.protocol.registerFileProtocol('min', (req) => {
     let { host, pathname } = new URL(req.url)
 
     if (pathname.charAt(0) === '/') {

@@ -6,6 +6,7 @@ const {
   app, // Module to control application life.
   protocol, // Module to control protocol handling
   BrowserWindow, // Module to create native browser window.
+  components,
   webContents,
   session,
   ipcMain: ipc,
@@ -25,7 +26,10 @@ crashReporter.start({
 
 if (process.argv.some(arg => arg === '-v' || arg === '--version')) {
   console.log('Min: ' + app.getVersion())
+  console.log('Electron: ' + process.versions.electron)
   console.log('Chromium: ' + process.versions.chrome)
+  console.log('Node: ' + process.versions.node)
+  console.log('V8: ' + process.versions.v8)
   process.exit()
 }
 
@@ -68,7 +72,7 @@ if (settings.get('userSelectedLanguage')) {
   app.commandLine.appendSwitch('lang', settings.get('userSelectedLanguage'))
 }
 
-const browserPage = 'min://app/index.html'
+const browserPage = 'file://' + __dirname + '/index.html'
 
 var mainMenu = null
 var secondaryMenu = null
@@ -204,6 +208,8 @@ function createWindowWithBounds (bounds) {
       nodeIntegration: true,
       contextIsolation: false,
       nodeIntegrationInWorker: true, // used by ProcessSpawner
+      experimentalFeatures: true,
+      devTools: true,
       additionalArguments: [
         '--user-data-path=' + userDataPath,
         '--app-version=' + app.getVersion(),
@@ -324,7 +330,7 @@ function createWindowWithBounds (bounds) {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', function () {
+app.whenReady().then(async () => {
   settings.set('restartNow', false)
   appIsReady = true
 
@@ -334,7 +340,9 @@ app.on('ready', function () {
     return
   }
 
-  registerBundleProtocol(session.defaultSession)
+  await components.whenReady();
+
+  //registerBundleProtocol(session.defaultSession)
 
   const newWin = createWindow()
 
@@ -461,7 +469,9 @@ app.once('ready', function() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      experimentalFeatures: true,
+      devTools: true
     }
   })
 

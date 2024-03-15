@@ -53,10 +53,10 @@ module.exports = function (platform, extraOptions) {
       `${executableName}${ext}`
     )
 
-    await flipFuses(electronBinaryPath, {
-      version: FuseVersion.V1,
-      [FuseV1Options.GrantFileProtocolExtraPrivileges]: false
-    })
+    //await flipFuses(electronBinaryPath, {
+      //version: FuseVersion.V1,
+      //[FuseV1Options.GrantFileProtocolExtraPrivileges]: false
+    //})
   }
 
   const options = {

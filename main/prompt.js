@@ -21,6 +21,8 @@ function createPrompt (options, callback) {
       nodeIntegration: false,
       sandbox: true,
       contextIsolation: true,
+      experimentalFeatures: true,
+      devTools: true,
       preload:  __dirname + '/pages/prompt/prompt.js'
     }
   })
@@ -31,7 +33,7 @@ function createPrompt (options, callback) {
   })
 
   // Load the HTML dialog box
-  promptWindow.loadURL('min://app/pages/prompt/index.html')
+  promptWindow.loadURL('file://' + __dirname + '/pages/prompt/index.html')
   promptWindow.once('ready-to-show', () => { promptWindow.show() })
 }
 

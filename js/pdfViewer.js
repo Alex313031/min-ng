@@ -5,7 +5,7 @@ const urlParser = require('util/urlParser.js')
 
 const PDFViewer = {
   url: {
-    base: 'min://app/pages/pdfViewer/index.html',
+    base: urlParser.getFileURL(__dirname + '/pages/pdfViewer/index.html'),
     queryString: '?url=%l'
   },
   isPDFViewer: function (tabId) {

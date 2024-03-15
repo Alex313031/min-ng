@@ -104,7 +104,7 @@ const webviews = {
   placeholderRequests: [],
   asyncCallbacks: {},
   internalPages: {
-    error: 'min://app/pages/error/index.html'
+    error: urlParser.getFileURL(__dirname + '/pages/error/index.html')
   },
   events: [],
   IPCEvents: [],
@@ -464,7 +464,7 @@ webviews.bindIPC('setSetting', function (tabId, args) {
 settings.listen(function () {
   tasks.forEach(function (task) {
     task.tabs.forEach(function (tab) {
-      if (tab.url.startsWith('min://')) {
+      if (tab.url.startsWith('file://')) {
         try {
           webviews.callAsync(tab.id, 'send', ['receiveSettingsData', settings.list])
         } catch (e) {

@@ -94,7 +94,7 @@ function buildAppMenu (options = {}) {
     accelerator: 'CmdOrCtrl+,',
     click: function (item, window) {
       sendIPCToWindow(window, 'addTab', {
-        url: 'min://app/pages/settings/index.html'
+        url: 'file://' + __dirname + '/pages/settings/index.html'
       })
     }
   }
@@ -423,9 +423,29 @@ function buildAppMenu (options = {}) {
         ...(process.platform !== 'darwin' ? [{
           label: l('appMenuAbout').replace('%n', app.name),
           click: function (item, window) {
+            const Os = require('os');
+            const isLinux = process.platform === 'linux';
+            const isWin = process.platform === 'win32';
+            const isMac = process.platform === 'darwin';
+            let osType;
+            if (isLinux) {
+              osType = 'Linux';
+            } else if (isWin) {
+              osType = 'Win';
+            } else if (isMac) {
+              osType = 'MacOS';
+            } else {
+              osType = 'BSD';
+            }
+            const archType = Os.arch();
             var info = [
               'Min v' + app.getVersion(),
-              'Chromium v' + process.versions.chrome
+              '',
+              'Electron v' + process.versions.electron,
+              'Chromium v' + process.versions.chrome,
+              'Node v' + process.versions.node,
+              'V8 v' + process.versions.v8,
+              'OS: ' + osType + ' ' + archType
             ]
             electron.dialog.showMessageBox({
               type: 'info',

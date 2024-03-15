@@ -8,7 +8,7 @@ var currentSearchEngine = {
   searchURL: '%s'
 }
 
-var defaultSearchEngine = 'DuckDuckGo'
+var defaultSearchEngine = 'Google'
 
 var searchEngines = {
   DuckDuckGo: {
