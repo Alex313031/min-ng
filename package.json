@@ -1,8 +1,8 @@
 {
-  "name": "min",
+  "name": "min-ng",
   "productName": "Min",
-  "applicationId": "com.palmeral.min",
-  "author": "PalmerAL",
+  "applicationId": "com.alex313031.min-ng",
+  "author": "Alex313031",
   "version": "1.31.3",
   "description": "A fast, minimal browser that protects your privacy",
   "electronVersion": "22.3.27",

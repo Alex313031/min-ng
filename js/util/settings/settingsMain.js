@@ -85,5 +85,5 @@ var settings = {
   }
 }
 
-settings.initialize()
+// settings.initialize()
 module.exports = settings
