@@ -98,16 +98,19 @@ module.exports = function (platform, extraOptions) {
           target: 'dir',
           arch: ['x64', 'armv7l', 'ia32', 'arm64']
         }
-      ]
+      ],
+      executableName: 'min-ng'
     },
     win: {
       target: 'dir',
-      icon: 'icons/icon256.ico'
+      icon: 'icons/icon256.ico',
+      executableName: 'min-ng'
     },
     mac: {
       icon: 'icons/icon.icns',
       target: 'dir',
       darkModeSupport: true,
+      executableName: 'min-ng',
       extendInfo: {
         NSHumanReadableCopyright: null,
         CFBundleDocumentTypes: [
