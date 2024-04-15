@@ -17,11 +17,11 @@ async function afterPackageBuilt (packagePath) {
   let archSuffix
 
   if (packagePath.includes('ia32')) {
-    archSuffix = '-ia32'
+    archSuffix = '-win32'
   } else if (packagePath.includes('arm64')) {
     archSuffix = '-arm64'
   } else {
-    archSuffix = ''
+    archSuffix = '-win64'
   }
 
   /* create zip files */
@@ -66,7 +66,7 @@ createPackage('win32', { arch: Arch.x64 })
     return createPackage('win32', { arch: Arch.ia32 })
   })
   .then(afterPackageBuilt)
-  .then(function () {
-    return createPackage('win32', { arch: Arch.arm64 })
-  })
-  .then(afterPackageBuilt)
+  //.then(function () {
+    //return createPackage('win32', { arch: Arch.arm64 })
+  //})
+  //.then(afterPackageBuilt)
