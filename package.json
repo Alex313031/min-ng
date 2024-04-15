@@ -1,7 +1,7 @@
 {
-  "name": "min-ng",
+  "name": "min",
   "productName": "Min",
-  "applicationId": "com.alex313031.min-ng",
+  "applicationId": "com.alex313031.min",
   "author": "Alex313031",
   "version": "1.31.3",
   "description": "A fast, minimal browser that protects your privacy",
